@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sample Liveness Web</title>
+    <title>Validação de identidade UCASH</title>
     <script src="https://cdn.jsdelivr.net/gh/nextcodebr/liveness-sdk-web-sample/dist/v6.8.5/liveness.js"></script>
     <style>
       * {
@@ -38,7 +38,6 @@
     </div>
     <script>
       async function start() {
-        // * ATENÇÃO * a sua apikey não deve ficar no frontend. A autenticação deve ser feita somente no backend
         const apiKey = "662c0444a385d33fee522748:z3-_6jU6uX958LRi_WSUt_FS";
         const jwt = await getJWT(apiKey);
         const params = getURLParameters(window.location.href)
@@ -46,21 +45,21 @@
           isDebug: params?.isDebug === 'true',
           token: jwt,
           faceapiPath:
-            "https://cdn.jsdelivr.net/gh/nextcodebr/liveness-sdk-web-sample/libs/", // caminho para a faceapi e os modelos
-          livenessUrlBase: "https://api-homolog.nxcd.app", // endpoint da api liveness
+            "https://cdn.jsdelivr.net/gh/nextcodebr/liveness-sdk-web-sample/libs/", 
+          livenessUrlBase: "https://api-homolog.nxcd.app",
           livenessConfirmEndpoint: "/liveness/v3", // opcional - default: /liveness
           isShowPreview: true, // exibir um preview da foto que será enviada
           errorCallback: error, // metodo de callback em caso de erro (status !== 200)
           successCallback: success, // metodo de callback em caso de sucesso (status: 200 com isAlive = true ou false)
           brightnessControl: 108, // padrão 108 - controla a tolerancia do brilho para submeter a selfie (quanto menor o valor, maior a tolerancia e possibilidade de isAlive=false)
           luminanceControl: 23, // padrão 23 - controla a tolerancia da luminância para submeter a selfie (quanto menor o valor, maior a tolerancia e possibilidade de isAlive=false)
-          ellipseStrokeStyle: "#D02780", // padrão '#D02780' - cor da elipse que encaixa o rosto - pode ser o nome da cor ou hexadecimal
+          ellipseStrokeStyle: "#D5E718", // padrão '#D02780' - cor da elipse que encaixa o rosto - pode ser o nome da cor ou hexadecimal
           activatedEllipseStrokeStyle: "#46E3C3", // padrão '#46E3C3' - cor da elipse ao detectar o rosto - pode ser o nome da cor ou hexadecimal
-          boxMessageBackgroundColor: "#D02780", // padrão '#D02780' - cor de fundo da caixa de mensagem - pode ser o nome da cor ou hexadecimal
-          boxMessageTextColor: "#f3f3f5", // padrão '#f3f3f5' - cor a fonte da caixa de mensagem - pode ser o nome da cor ou hexadecimal
+          boxMessageBackgroundColor: "#D5E718", // padrão '#D02780' - cor de fundo da caixa de mensagem - pode ser o nome da cor ou hexadecimal
+          boxMessageTextColor: "#121B23", // padrão '#f3f3f5' - cor a fonte da caixa de mensagem - pode ser o nome da cor ou hexadecimal
           cameraPermissionErrorCallback,
           ignoreFaceRules: false, // ignora validações de posicionamento de face, considera somente estar encaixada na elipse
-          activateCountdown: false // ativa contagem regressiva de 3 segundos antes de tirar a selfie
+          activateCountdown: true // ativa contagem regressiva de 3 segundos antes de tirar a selfie
         };
 
         if (isDesktop()) {
