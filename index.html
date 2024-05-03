@@ -31,6 +31,11 @@
         transform: translateX(-50%) translateY(-50%) !important;
       }
     </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="video-wrapper"></div>
+    </div>
     <script>
       async function start() {
         const apiKey = "662c0444a385d33fee522748:z3-_6jU6uX958LRi_WSUt_FS";
@@ -70,6 +75,7 @@
           config.height = 720 / (4/3)
         }
 
+
         // Caso queria passar configs via parametros na URL
         if (isMobile()) {
             config.frameBox = {
@@ -87,23 +93,18 @@
         window.liveness.start();
       }
 
-      // Função para enviar os dados da imagem para a aplicação
-      function sendImageDataToApplication(imageData) {
-        window.ReactNativeWebView.postMessage(imageData);
-      }
+      // function changeToFaceCamera () {
+      //   window.liveness.setMobileFaceCam()
+      // }
+      // function changeToEnvCamera () {
+      //   window.liveness.setMobileEnvironmentCam()
+      // }
 
-      // Função de sucesso chamada quando a imagem é capturada com sucesso
       function success(response) {
+        // console.log("success", response);
         console.log(response?.data)
-        if (response && response.data && response.data.imageData) {
-          // Envia os dados da imagem para o aplicativo
-          sendImageDataToApplication(response.data.imageData);
-        } else {
-          console.log('Nenhum dado de imagem encontrado na resposta.');
-        }
         alert(`Resultado: ${JSON.stringify(response?.data)}`)
       }
-
       function error(error) {
         console.log("error", error);
       }
