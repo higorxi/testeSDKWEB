@@ -102,8 +102,8 @@
 
       function success(response) {
         // console.log("success", response);
-        console.log(response?.data)
-        const image = response?.data?.imageBase64; // Suponha que a imagem seja fornecida como base64
+        console.log('resposta', response)
+        const image = response?.imageBase64; // Suponha que a imagem seja fornecida como base64
         if (window.ReactNativeWebView) {
         window.ReactNativeWebView.postMessage(JSON.stringify({ image: image }));
       } else {
