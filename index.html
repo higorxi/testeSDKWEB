@@ -47,19 +47,19 @@
           faceapiPath:
             "https://cdn.jsdelivr.net/gh/nextcodebr/liveness-sdk-web-sample/libs/", 
           livenessUrlBase: "https://api-homolog.nxcd.app",
-          livenessConfirmEndpoint: "/liveness/v3", // opcional - default: /liveness
+          livenessConfirmEndpoint: "/liveness/v3", 
           isShowPreview: true, // exibir um preview da foto que será enviada
           errorCallback: error, // metodo de callback em caso de erro (status !== 200)
           successCallback: success, // metodo de callback em caso de sucesso (status: 200 com isAlive = true ou false)
-          brightnessControl: 1, // padrão 108 - controla a tolerancia do brilho para submeter a selfie (quanto menor o valor, maior a tolerancia e possibilidade de isAlive=false)
-          luminanceControl: 1, // padrão 23 - controla a tolerancia da luminância para submeter a selfie (quanto menor o valor, maior a tolerancia e possibilidade de isAlive=false)
-          ellipseStrokeStyle: "#D5E718", // padrão '#D02780' - cor da elipse que encaixa o rosto - pode ser o nome da cor ou hexadecimal
-          activatedEllipseStrokeStyle: "#46E3C3", // padrão '#46E3C3' - cor da elipse ao detectar o rosto - pode ser o nome da cor ou hexadecimal
-          boxMessageBackgroundColor: "#D5E718", // padrão '#D02780' - cor de fundo da caixa de mensagem - pode ser o nome da cor ou hexadecimal
-          boxMessageTextColor: "#121B23", // padrão '#f3f3f5' - cor a fonte da caixa de mensagem - pode ser o nome da cor ou hexadecimal
+          brightnessControl: 108, // padrão 108 - controla a tolerancia do brilho para submeter a selfie (quanto menor o valor, maior a tolerancia e possibilidade de isAlive=false)
+          luminanceControl: 23, // padrão 23 - controla a tolerancia da luminância para submeter a selfie (quanto menor o valor, maior a tolerancia e possibilidade de isAlive=false)
+          ellipseStrokeStyle: "#D5E718", 
+          activatedEllipseStrokeStyle: "#46E3C3", 
+          boxMessageBackgroundColor: "#D5E718", 
+          boxMessageTextColor: "#121B23", 
           cameraPermissionErrorCallback,
-          ignoreFaceRules: false, // ignora validações de posicionamento de face, considera somente estar encaixada na elipse
-          activateCountdown: false // ativa contagem regressiva de 3 segundos antes de tirar a selfie
+          ignoreFaceRules: false, 
+          activateCountdown: false 
         };
 
         if (isDesktop()) {
@@ -88,8 +88,8 @@
             config.ellipseMaskTop = parseFloat(params?.ellipseMaskTop) || 2.2 // 1.9 padrão -- 1 = desce a elipse -- 4 = sobe elipse
             config.ellipseMaskLeft = parseFloat(params?.ellipseMaskLeft) || 2 // 2 padrão -- 1 = elipse a esquerda -- 10 = elipse a direita
         }
-        const videoWrapper = document.getElementById("video-wrapper"); // obter elemento na tela onde o liveness será injetado
-        window.liveness = new Liveness(videoWrapper, config); // instancia o liveness
+        const videoWrapper = document.getElementById("video-wrapper"); 
+        window.liveness = new Liveness(videoWrapper, config); 
         window.liveness.start();
       }
 
@@ -101,8 +101,6 @@
       // }
 
       function success(response) {
-        // console.log("success", response);
-        console.log('resposta', response)
         const image = response?.base64; 
         if (window.ReactNativeWebView) {
         window.ReactNativeWebView.postMessage(JSON.stringify({ image: image }));
