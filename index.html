@@ -104,10 +104,9 @@
         console.log('response', response)
         const image = response?.base64;
         const isAlive = response?.data?.isAlive 
+        console.log('this is Alive', isAlive)
         if (window.ReactNativeWebView) {
-        window.ReactNativeWebView.postMessage(JSON.stringify({ image: image }));
-        window.ReactNativeWebView.postMessage(JSON.stringify({ isAlive: isAlive }));
-        window.ReactNativeWebView.postMessage(JSON.stringify({ response: response }));
+        window.ReactNativeWebView.postMessage(JSON.stringify({ response: response, image: image }));
       } else {
         console.error("window.ReactNativeWebView não encontrado. A comunicação com o React Native falhou.");
       }
